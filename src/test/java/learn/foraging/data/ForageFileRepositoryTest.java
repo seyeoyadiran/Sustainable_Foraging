@@ -14,7 +14,7 @@ import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ForageFileRepositoryTest {
 
@@ -25,7 +25,8 @@ class ForageFileRepositoryTest {
 
     final LocalDate date = LocalDate.of(2020, 6, 26);
 
-    ForageFileRepository repository = new ForageFileRepository(TEST_DIR_PATH);
+
+    ForageFileRepository repository = new ForageFileRepository(TEST_DIR_PATH, new ForagerRepositoryDouble(), new ItemRepositoryDouble());
 
     @BeforeEach
     void setup() throws IOException {
@@ -59,4 +60,73 @@ class ForageFileRepositoryTest {
         assertEquals(36, forage.getId().length());
     }
 
+    @Test
+    void shouldNotAddWhenForagerIsNull() throws DataException {
+        Forage forage = new Forage();
+        forage.setDate(date);
+        forage.setKilograms(0.75);
+
+        Item item = new Item();
+        item.setId(12);
+        forage.setItem(item);
+
+        //Setting forager to null
+        forage.setForager(null);
+
+        forage = repository.add(forage);
+        assertNull(forage);
+    }
+
+    @Test
+    void shouldNotAddWhenItemIsNull() throws DataException {
+        Forage forage = new Forage();
+        forage.setDate(date);
+        forage.setKilograms(0.75);
+
+        Forager forager = new Forager();
+        forage.setId("12312-Random-1234-fff");
+        forage.setForager(forager);
+
+        forage.setItem(null);
+
+        forage = repository.add(forage);
+        assertNull(forage);
+    }
+
+    @Test
+    void shouldUpdateForage() throws DataException {
+        List<Forage> forages = repository.findByDate(date);
+        Forage originalForage = forages.get(0);
+        originalForage.setKilograms(1.25);
+
+        boolean updated = repository.update(originalForage);
+        assertTrue(updated);
+
+        //Verifying
+        Forage updatedForage = repository.findByDate(date).get(0);
+        assertEquals(1.25, updatedForage.getKilograms());
+    }
+
+    @Test
+    void shouldReturnEmptyListWhenNoForageFoundForDate(){
+        LocalDate newDate = LocalDate.of(2020, 9, 1);
+        List<Forage> forages = repository.findByDate(newDate);
+        assertTrue(forages.isEmpty());
+    }
+
+    @Test
+    void shouldNotAddForageWithMissingForager() throws DataException {
+        LocalDate date = LocalDate.now();
+        Item item = new Item();
+        item.setId(16);
+        Forage forage = new Forage();
+        forage.setForager(null);
+        forage.setItem(item);
+        forage.setDate(date);
+        forage.setKilograms(10.0);
+
+        Forage addedForage = repository.add(forage);
+
+        assertNull(addedForage);
+    }
 }

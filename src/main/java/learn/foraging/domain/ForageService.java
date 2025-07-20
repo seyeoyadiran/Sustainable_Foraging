@@ -8,16 +8,16 @@ import learn.foraging.models.Category;
 import learn.foraging.models.Forage;
 import learn.foraging.models.Forager;
 import learn.foraging.models.Item;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
+@Service
 public class ForageService {
+
 
     private final ForageRepository forageRepository;
     private final ForagerRepository foragerRepository;
@@ -74,6 +74,12 @@ public class ForageService {
             return result;
         }
 
+        if(forageExists(forage)){
+            result.addErrorMessage("Duplicate forage entry for the same forager, item, and date");
+            return result;
+        }
+
+        forage.setId(UUID.randomUUID().toString());
         result.setPayload(forageRepository.add(forage));
 
         return result;
@@ -169,5 +175,16 @@ public class ForageService {
         if (itemRepository.findById(forage.getItem().getId()) == null) {
             result.addErrorMessage("Item does not exist.");
         }
+    }
+
+    private boolean forageExists(Forage forage){
+    List<Forage> forages = forageRepository.findByDate(forage.getDate());
+    for(Forage existingForage : forages){
+        if(existingForage.getForager().getId().equals(forage.getForager().getId()) &&
+        existingForage.getItem().getId() == forage.getItem().getId()) {
+            return true;
+        }
+    }
+    return false;
     }
 }

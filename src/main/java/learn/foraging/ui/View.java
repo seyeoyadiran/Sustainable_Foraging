@@ -4,6 +4,8 @@ import learn.foraging.models.Category;
 import learn.foraging.models.Forage;
 import learn.foraging.models.Forager;
 import learn.foraging.models.Item;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -11,10 +13,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Component
 public class View {
 
     private final ConsoleIO io;
 
+    @Autowired
     public View(ConsoleIO io) {
         this.io = io;
     }

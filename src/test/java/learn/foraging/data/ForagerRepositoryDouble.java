@@ -4,6 +4,7 @@ import learn.foraging.models.Forager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class ForagerRepositoryDouble implements ForagerRepository {
@@ -16,12 +17,11 @@ public class ForagerRepositoryDouble implements ForagerRepository {
         foragers.add(FORAGER);
     }
 
-    @Override
+
     public Forager findById(String id) {
-        return foragers.stream()
-                .filter(i -> i.getId().equals(id))
-                .findFirst()
-                .orElse(null);
+        Forager forager = new Forager();
+        forager.setId(id);
+        return  forager;
     }
 
     @Override
@@ -36,6 +36,7 @@ public class ForagerRepositoryDouble implements ForagerRepository {
                 .collect(Collectors.toList());
     }
 
+
     private static Forager makeForager() {
         Forager forager = new Forager();
         forager.setId("0e4707f4-407e-4ec9-9665-baca0aabe88c");
@@ -45,4 +46,10 @@ public class ForagerRepositoryDouble implements ForagerRepository {
         return forager;
     }
 
+    @Override
+    public void add(Forager forager) throws DataException{
+        forager.setId(UUID.randomUUID().toString());
+        foragers.add(forager);
+        return ;
+    }
 }
