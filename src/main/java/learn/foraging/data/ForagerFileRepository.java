@@ -2,10 +2,7 @@ package learn.foraging.data;
 
 import learn.foraging.models.Forager;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOError;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,6 +13,22 @@ public class ForagerFileRepository implements ForagerRepository {
 
     public ForagerFileRepository(String filePath) {
         this.filePath = filePath;
+    }
+
+    @Override
+    public void add(Forager forager) throws DataException {
+        List<Forager> all = findAll();
+        all.add(forager);
+
+        try(PrintWriter writer = new PrintWriter(filePath)){
+            writer.println("id,first_name,last_name,state");
+            for (Forager f : all){
+                writer.println(serialize(f));
+            }
+        } catch (IOException ex) {
+            throw new DataException("Could not write to file: " + filePath, ex);
+        }
+
     }
 
     @Override
@@ -52,7 +65,7 @@ public class ForagerFileRepository implements ForagerRepository {
                 .filter(i -> i.getState().equalsIgnoreCase(stateAbbr))
                 .collect(Collectors.toList());
     }
-    
+
     private Forager deserialize(String[] fields) {
         Forager result = new Forager();
         result.setId(fields[0]);
@@ -60,5 +73,15 @@ public class ForagerFileRepository implements ForagerRepository {
         result.setLastName(fields[2]);
         result.setState(fields[3]);
         return result;
+    }
+
+    //adding serialize method
+    private String serialize(Forager forager){
+        return String.format("%s,%s,%s,%s",
+                forager.getId(),
+                forager.getFirstName(),
+                forager.getLastName(),
+                forager.getState()
+                );
     }
 }

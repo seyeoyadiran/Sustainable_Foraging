@@ -16,9 +16,10 @@ public class App {
         ConsoleIO io = new ConsoleIO();
         View view = new View(io);
 
-        ForageFileRepository forageFileRepository = new ForageFileRepository("./data/forage_data");
+
         ForagerFileRepository foragerFileRepository = new ForagerFileRepository("./data/foragers.csv");
         ItemFileRepository itemFileRepository = new ItemFileRepository("./data/items.txt");
+        ForageFileRepository forageFileRepository = new ForageFileRepository("./data/forage_data",foragerFileRepository, itemFileRepository);
 
         ForagerService foragerService = new ForagerService(foragerFileRepository);
         ForageService forageService = new ForageService(forageFileRepository, foragerFileRepository, itemFileRepository);

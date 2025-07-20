@@ -14,9 +14,13 @@ public class ForageFileRepository implements ForageRepository {
 
     private static final String HEADER = "id,forager_id,item_id,kg";
     private final String directory;
+    private final ForagerRepository foragerRepo;
+    private final ItemRepository itemRepo;
 
-    public ForageFileRepository(String directory) {
+    public ForageFileRepository(String directory, ForagerRepository foragerRepo, ItemRepository itemRepo) {
         this.directory = directory;
+        this.foragerRepo = foragerRepo;
+        this.itemRepo = itemRepo;
     }
 
     @Override
@@ -92,13 +96,12 @@ public class ForageFileRepository implements ForageRepository {
         result.setDate(date);
         result.setKilograms(Double.parseDouble(fields[3]));
 
-        Forager forager = new Forager();
-        forager.setId(fields[1]);
+        Forager forager = foragerRepo.findById(fields[1]);
         result.setForager(forager);
 
-        Item item = new Item();
-        item.setId(Integer.parseInt(fields[2]));
+        Item item = itemRepo.findById(Integer.parseInt(fields[2]));
         result.setItem(item);
+
         return result;
     }
 }
