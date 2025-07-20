@@ -10,8 +10,10 @@ import learn.foraging.models.Forage;
 import learn.foraging.models.Forager;
 import learn.foraging.models.Item;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 public class Controller {
 
@@ -59,12 +61,10 @@ public class Controller {
                     addItem();
                     break;
                 case REPORT_KG_PER_ITEM:
-                    view.displayStatus(false, "NOT IMPLEMENTED");
-                    view.enterToContinue();
+                    reportKgPerItem();
                     break;
                 case REPORT_CATEGORY_VALUE:
-                    view.displayStatus(false, "NOT IMPLEMENTED");
-                    view.enterToContinue();
+                    reportCategoryValue();
                     break;
                 case GENERATE:
                     generate();
@@ -154,5 +154,21 @@ public class Controller {
         Category category = view.getItemCategory();
         List<Item> items = itemService.findByCategory(category);
         return view.chooseItem(items);
+    }
+
+    //Missing Methods
+    private void reportKgPerItem(){
+        LocalDate date = view.getForageDate();
+        Map<Item, Double> report = forageService.findKiloGramsPerItem(date);
+        view.displayKgPerItem(report);
+        view.enterToContinue();
+    }
+
+    private void reportCategoryValue(){
+        LocalDate date = view.getForageDate();
+        Map<Category, BigDecimal> report = forageService.findTotalValuePerCategory(date);
+        view.displayCategoryValue(report);
+        view.enterToContinue();
+
     }
 }

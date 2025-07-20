@@ -4,10 +4,12 @@ import learn.foraging.data.DataException;
 import learn.foraging.data.ForageRepository;
 import learn.foraging.data.ForagerRepository;
 import learn.foraging.data.ItemRepository;
+import learn.foraging.models.Category;
 import learn.foraging.models.Forage;
 import learn.foraging.models.Forager;
 import learn.foraging.models.Item;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +29,7 @@ public class ForageService {
         this.itemRepository = itemRepository;
     }
 
+
     public List<Forage> findByDate(LocalDate date) {
 
         Map<String, Forager> foragerMap = foragerRepository.findAll().stream()
@@ -41,6 +44,28 @@ public class ForageService {
         }
 
         return result;
+    }
+
+    public Map<Item, Double> findKiloGramsPerItem(LocalDate date){
+        List<Forage> forages = findByDate(date);
+        return forages.stream()
+                .collect(Collectors.groupingBy(
+                        Forage::getItem,
+                        Collectors.summingDouble(Forage::getKilograms)
+                ));
+    }
+
+    public Map<Category, BigDecimal> findTotalValuePerCategory(LocalDate date){
+        List<Forage> forages = findByDate(date);
+        return forages.stream()
+                .collect(Collectors.groupingBy(
+                        f -> f.getItem().getCategory(),
+                        Collectors.reducing(
+                                BigDecimal.ZERO,
+                                Forage::getValue,
+                                BigDecimal::add
+                        )
+                ));
     }
 
     public Result<Forage> add(Forage forage) throws DataException {

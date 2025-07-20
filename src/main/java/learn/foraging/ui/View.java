@@ -8,6 +8,7 @@ import learn.foraging.models.Item;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class View {
@@ -203,4 +204,28 @@ public class View {
             io.printf("%s: %s, %s, %.2f $/kg%n", item.getId(), item.getName(), item.getCategory(), item.getDollarPerKilogram());
         }
     }
+
+    //Added Methods to display KG
+    public void displayKgPerItem(Map<Item, Double> report){
+        displayHeader("Kilograms Per Item");
+        if(report.isEmpty()){
+            io.printf("No forages found on this date");
+            return;
+        }
+        for(Map.Entry<Item, Double> entry: report.entrySet()){
+            io.printf("%s: %.2f kg%n", entry.getKey().getName(), entry.getValue());
+        }
+    }
+
+    //Added Methods to Category KG/
+    public void displayCategoryValue(Map<Category, BigDecimal> report){
+        displayHeader("Total Value Per Category");
+        if(report.isEmpty()){
+            io.println("No forages found on this date");
+            return;
+        }
+        for (Map.Entry<Category, BigDecimal>  entry : report.entrySet()) {
+            io.printf("%s: %.2f kg%n", entry.getKey(), entry.getValue());
+        }
+}
 }
