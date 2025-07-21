@@ -73,6 +73,28 @@ public class View {
         return foragers.get(index - 1);
     }
 
+    //Adding view state Abbreviation
+    public String getStateAbbreviation(){
+        return io.readRequiredString("Enter 2 - letter state abbreviation (e.g., OH): ").toUpperCase();
+    }
+
+    //Displaying foragers
+    public void displayForagers(List<Forager> foragers){
+        displayHeader("Foragers");
+        if(foragers.isEmpty()){
+            io.println("No foragers found for this state");
+            return;
+        }
+
+        for(Forager forager: foragers){
+            io.printf("%s %s (%s)%n",
+                    forager.getFirstName(),
+                    forager.getLastName(),
+                    forager.getState()
+                    );
+        }
+    }
+
     public Category getItemCategory() {
         displayHeader("Item Categories");
         int index = 1;

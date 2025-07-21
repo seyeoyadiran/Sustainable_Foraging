@@ -51,6 +51,9 @@ public class Controller {
                 case VIEW_FORAGES_BY_DATE:
                     viewByDate();
                     break;
+                case VIEW_FORAGES_BY_STATE:
+                    viewForagersByState();
+                    break;
                 case VIEW_ITEMS:
                     viewItems();
                     break;
@@ -82,6 +85,13 @@ public class Controller {
         LocalDate date = view.getForageDate();
         List<Forage> forages = forageService.findByDate(date);
         view.displayForages(forages);
+        view.enterToContinue();
+    }
+
+    private void viewForagersByState(){
+        String state = view.getStateAbbreviation();
+        List<Forager> foragers = foragerService.findByState(state);
+        view.displayForagers(foragers);
         view.enterToContinue();
     }
 
