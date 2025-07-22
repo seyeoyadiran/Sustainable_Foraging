@@ -42,9 +42,18 @@ public class ItemService {
 
         if (item.getDollarPerKilogram() == null) {
             result.addErrorMessage("$/Kg is required.");
-        } else if (item.getDollarPerKilogram().compareTo(BigDecimal.ZERO) < 0
-                || item.getDollarPerKilogram().compareTo(new BigDecimal("7500.00")) > 0) {
-            result.addErrorMessage("%/Kg must be between 0.00 and 7500.00.");
+        }else {
+            /// validate based on the category
+        if(item.getCategory() == Category.EDIBLE || item.getCategory() == Category.MEDICINAL){
+            if(item.getDollarPerKilogram().compareTo(new BigDecimal("0.01")) < 0
+                || item.getDollarPerKilogram().compareTo(new BigDecimal("7500.00")) > 0){
+                result.addErrorMessage("Fore edible/medicinal items, $/kg must be between $0.01 and $7500.00");
+            }
+        }else if (item.getCategory() == Category.INEDIBLE || item.getCategory() == Category.POISONOUS ){
+            if(item.getDollarPerKilogram().compareTo(BigDecimal.ZERO) != 0){
+                result.addErrorMessage("For inedible/poisonous items, $/kg must be 0.");
+            }
+        }
         }
 
         if (!result.isSuccess()) {

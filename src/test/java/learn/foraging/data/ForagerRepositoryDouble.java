@@ -42,7 +42,7 @@ public class ForagerRepositoryDouble implements ForagerRepository {
         forager.setId("0e4707f4-407e-4ec9-9665-baca0aabe88c");
         forager.setFirstName("Jilly");
         forager.setLastName("Sisse");
-        forager.setState("GA");
+        forager.setState("CA");
         return forager;
     }
 

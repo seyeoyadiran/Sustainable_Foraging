@@ -110,7 +110,7 @@ public class Controller {
         if(!result.isSuccess()){
             view.displayStatus(false, result.getErrorMessages());
         } else {
-            String successMessage = String.format("Forager %s %s added.");
+            String successMessage = String.format("Forager %s %s added.", forager.getFirstName() , forager.getLastName());
             result.getPayload().getFirstName();
             result.getPayload().getLastName();
             view.displayStatus(true, successMessage);

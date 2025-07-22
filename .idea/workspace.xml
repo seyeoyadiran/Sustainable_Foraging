@@ -17,6 +17,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -37,20 +38,32 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.App.executor": "Run",
+    "JUnit.All in sustainable-foraging.executor": "Run",
     "JUnit.ForageFileRepositoryTest.executor": "Run",
     "JUnit.ForageServiceTest.executor": "Run",
     "JUnit.ForageServiceTest.shouldNotAddWhenForagerNotFound.executor": "Debug",
     "JUnit.ForagerFileRepositoryTest.executor": "Run",
+    "JUnit.ForagerServiceTest.executor": "Run",
     "JUnit.java in sustainable-foraging.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "last_opened_file_path": "/Users/seye/HDT/module04-assessment-sustainable-foraging-seyeoyadiran",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "SDKs",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "settings.editor.selected.configurable": "MavenSettings"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="learn.foraging.domain" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.App">
     <configuration name="&lt;template&gt;" type="TestNG" default="true" selected="false">
       <option name="VM_PARAMETERS" value="-ea" />
@@ -71,6 +84,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="All in sustainable-foraging" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="sustainable-foraging" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ForageFileRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="sustainable-foraging" />
       <option name="PACKAGE_NAME" value="learn.foraging.data" />
@@ -81,20 +103,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ForageServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ForagerServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="sustainable-foraging" />
       <option name="PACKAGE_NAME" value="learn.foraging.domain" />
-      <option name="MAIN_CLASS_NAME" value="learn.foraging.domain.ForageServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ForagerFileRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="sustainable-foraging" />
-      <option name="PACKAGE_NAME" value="learn.foraging.data" />
-      <option name="MAIN_CLASS_NAME" value="learn.foraging.data.ForagerFileRepositoryTest" />
+      <option name="MAIN_CLASS_NAME" value="learn.foraging.domain.ForagerServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <method v="2">
@@ -119,18 +131,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.App" />
+      <item itemvalue="JUnit.All in sustainable-foraging" />
+      <item itemvalue="JUnit.ForagerServiceTest" />
       <item itemvalue="JUnit.ForageFileRepositoryTest" />
-      <item itemvalue="JUnit.ForagerFileRepositoryTest" />
-      <item itemvalue="JUnit.ForageServiceTest" />
       <item itemvalue="JUnit.java in sustainable-foraging" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.App" />
+        <item itemvalue="JUnit.All in sustainable-foraging" />
         <item itemvalue="JUnit.java in sustainable-foraging" />
+        <item itemvalue="JUnit.ForagerServiceTest" />
         <item itemvalue="JUnit.ForageFileRepositoryTest" />
-        <item itemvalue="JUnit.ForagerFileRepositoryTest" />
-        <item itemvalue="JUnit.ForageServiceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -154,16 +166,6 @@
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="1" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/learn/foraging/domain/ForageServiceTest.java</url>
-          <line>54</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/learn/foraging/domain/ForageServiceTest.java</url>
-          <line>53</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

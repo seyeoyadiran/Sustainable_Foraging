@@ -22,6 +22,7 @@ class ForageServiceTest {
             new ForagerRepositoryDouble(),
             new ItemRepositoryDouble());
 
+
     @Test
     void shouldAdd() throws DataException {
         Forage forage = new Forage();
@@ -39,7 +40,7 @@ class ForageServiceTest {
     @Test
     void shouldNotAddWhenForagerNotFound() throws DataException {
         Forager forager = new Forager();
-        forager.setId("30816379-188d-4552-913f-9a48405e8c08");
+        forager.setId("30816379-188d-4552-913f-9a48405de8c08");
         forager.setFirstName("Ermengarde");
         forager.setLastName("Sansom");
         forager.setState("NM");
@@ -51,7 +52,7 @@ class ForageServiceTest {
         forage.setKilograms(0.5);
 
         Result<Forage> result = service.add(forage);
-      //  assertFalse(result.isSuccess());
+        //assertFalse(result.isSuccess());
     }
 
     @Test

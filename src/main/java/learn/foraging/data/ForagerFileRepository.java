@@ -20,13 +20,6 @@ public class ForagerFileRepository implements ForagerRepository {
 
     @Override
     public void add(Forager forager) throws DataException {
-
-        Forager existingForager = findById(forager.getId());
-
-        if(existingForager == null){
-            throw new DataException("Forager not found with id: " + forager.getId());
-        }
-
         List<Forager> all = findAll();
         all.add(forager);
 
@@ -35,8 +28,8 @@ public class ForagerFileRepository implements ForagerRepository {
             for (Forager f : all){
                 writer.println(serialize(f));
             }
-        } catch (IOException ex) {
-            throw new DataException("Could not write to file: " + filePath, ex);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         }
 
     }
