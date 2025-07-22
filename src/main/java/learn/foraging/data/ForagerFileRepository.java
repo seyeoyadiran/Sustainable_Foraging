@@ -69,6 +69,10 @@ public class ForagerFileRepository implements ForagerRepository {
                 .collect(Collectors.toList());
     }
 
+    private String sanitize(String input){
+        return input == null ? "": input.replace(",", "");
+    }
+
     private Forager deserialize(String[] fields) {
         Forager result = new Forager();
         result.setId(fields[0]);
@@ -82,9 +86,9 @@ public class ForagerFileRepository implements ForagerRepository {
     private String serialize(Forager forager){
         return String.format("%s,%s,%s,%s",
                 forager.getId(),
-                forager.getFirstName(),
-                forager.getLastName(),
-                forager.getState()
+                sanitize(forager.getFirstName()),
+                sanitize(forager.getLastName()),
+                sanitize(forager.getState())
                 );
     }
 }

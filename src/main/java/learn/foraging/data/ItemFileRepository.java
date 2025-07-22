@@ -85,15 +85,18 @@ public class ItemFileRepository implements ItemRepository {
 
         return false;
     }
+    private String sanitize(String input){
+        return input == null ? "": input.replace(",", "");
+    }
+
 
     private String serialize(Item item) {
         return String.format("%s,%s,%s,%s",
                 item.getId(),
-                item.getName(),
-                item.getCategory(),
+                sanitize(item.getName()),
+                sanitize(item.getCategory().toString()),
                 item.getDollarPerKilogram());
     }
-
     private Item deserialize(String[] fields) {
         Item result = new Item();
         result.setId(Integer.parseInt(fields[0]));
