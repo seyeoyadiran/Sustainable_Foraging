@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Sustainable_Foraging
 
 This project is a console-based foraging management application built in Java using Spring.
