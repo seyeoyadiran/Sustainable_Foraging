@@ -1,4 +1,14 @@
-# Module04-Assessment-sustainable-foragingFor
-Student Facing Exercises and Assessments for the Java Async Program
 # Sustainable_Foraging
-# Sustainable_Foraging
+
+This project is a console-based foraging management application built in Java using Spring.
+It’s designed with clean architecture principles, likely as a learning project to practice:
+
+- Dependency injection
+
+- File-based repositories
+
+- Domain modeling
+
+- Report generation and aggregation
+
+- Interactive console UI
