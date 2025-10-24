@@ -20,8 +20,6 @@ public class App {
         controller.run();
     }
 
-
-
     public void manualStart(){
         ConsoleIO io = new ConsoleIO();
         View view = new View(io);

@@ -117,7 +117,6 @@ public class Controller {
         }
     }
 
-
     private void addForage() throws DataException {
         view.displayHeader(MainMenuOption.ADD_FORAGE.getMessage());
         Forager forager = getForager();
