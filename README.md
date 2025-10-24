@@ -1,8 +1,7 @@
-<<<<<<< HEAD
 # Sustainable_Foraging
 
 This project is a console-based foraging management application built in Java using Spring.
-It’s designed with clean architecture principles, likely as a learning project to practice:
+It’s designed with clean architecture principles: Purpose of the project is for ...
 
 - Dependency injection
 
